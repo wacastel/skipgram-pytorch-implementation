@@ -62,6 +62,10 @@ Once trained, use the evaluation script to test the model's understanding of rel
 To prove the model successfully maps semantic meaning to algebraic space, run the visualization script:
 `python visualize.py`
 
+**Note for Mac Users:** If you encounter a `segmentation fault` when running the t-SNE reduction, it is a known issue with `scikit-learn` interacting with Apple's Accelerate framework. You can bypass this by limiting the math operations to a single CPU thread. Run this command in your terminal before executing the script:
+`export OMP_NUM_THREADS=1`
+`python visualize.py`
+
 The output will clearly demonstrate how the neural network organically clusters similar concepts (like numbers, animals, and colors) into distinct neighborhoods without any labeled supervision.
 """
 
@@ -71,7 +75,7 @@ The output will clearly demonstrate how the neural network organically clusters 
     with open("README.md", "w", encoding="utf-8") as file:
         file.write(readme_content)
     
-    print("Successfully generated README.md with math formatting!")
+    print("Successfully generated README.md with math formatting and troubleshooting steps!")
 
 if __name__ == "__main__":
     generate_readme()
