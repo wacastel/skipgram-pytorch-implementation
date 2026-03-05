@@ -54,7 +54,7 @@ with torch.no_grad():
 print("Running t-SNE to reduce from 50D to 2D...")
 # perplexity controls the balance between local and global aspects of the data. 
 # For small datasets, a lower perplexity (like 5-10) works best.
-tsne = TSNE(n_components=2, random_state=42, perplexity=8, max_iter=1000)
+tsne = TSNE(n_components=2, random_state=42, perplexity=8, max_iter=1000, init='random')
 word_vectors_2d = tsne.fit_transform(word_vectors_50d)
 
 # ==========================================
