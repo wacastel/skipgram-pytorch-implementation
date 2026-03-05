@@ -1,5 +1,10 @@
 def generate_readme():
-    readme_content = """# Word2Vec from Scratch: PyTorch Implementation
+    # chr(36) programmatically generates the math formatting symbol.
+    # This completely hides it from the browser's renderer!
+    inline_math = chr(36)
+    display_math = chr(36) + chr(36)
+    
+    readme_template = r"""# Word2Vec from Scratch: PyTorch Implementation
 
 A complete, ground-up PyTorch implementation of the Word2Vec Skip-Gram model. This repository demonstrates the foundational mechanics of distributional semantics and representation learning by building a dense vector space from the text8 Wikipedia corpus.
 
@@ -17,11 +22,13 @@ Built as an exploration of dense embeddings and neural network architectures pri
 
 The core objective of this Skip-Gram model is to maximize the average log probability of context words given a center word. To train the network efficiently, we bypass the computationally expensive softmax denominator over the entire vocabulary and use **Negative Sampling**.
 
-We minimize the Binary Cross-Entropy loss function for a center word (c), a true context word (o), and (k) negative samples:
+We minimize the Binary Cross-Entropy loss function for a center word ([IN]c[IN]), a true context word ([IN]o[IN]), and ([IN]k[IN]) negative samples:
 
-J(theta) = -log sigmoid(u_o^T * v_c) - sum_{j=1}^{k} log sigmoid(-u_j^T * v_c)
+[DIS]
+J(\theta) = -\log \sigma(u_o^T v_c) - \sum_{j=1}^{k} \log \sigma(-u_j^T v_c)
+[DIS]
 
-Where v_c represents the center word embedding and u_o represents the context word embedding.
+Where [IN]v_c[IN] represents the center word embedding and [IN]u_o[IN] represents the context word embedding.
 
 ## 🛠 Setup & Installation
 
@@ -58,10 +65,13 @@ To prove the model successfully maps semantic meaning to algebraic space, run th
 The output will clearly demonstrate how the neural network organically clusters similar concepts (like numbers, animals, and colors) into distinct neighborhoods without any labeled supervision.
 """
 
+    # Replace the placeholders with the actual math markdown symbols
+    readme_content = readme_template.replace("[DIS]", display_math).replace("[IN]", inline_math)
+
     with open("README.md", "w", encoding="utf-8") as file:
         file.write(readme_content)
     
-    print("Successfully generated README.md!")
+    print("Successfully generated README.md with math formatting!")
 
 if __name__ == "__main__":
     generate_readme()

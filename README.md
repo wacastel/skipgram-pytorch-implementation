@@ -16,11 +16,13 @@ Built as an exploration of dense embeddings and neural network architectures pri
 
 The core objective of this Skip-Gram model is to maximize the average log probability of context words given a center word. To train the network efficiently, we bypass the computationally expensive softmax denominator over the entire vocabulary and use **Negative Sampling**.
 
-We minimize the Binary Cross-Entropy loss function for a center word (c), a true context word (o), and (k) negative samples:
+We minimize the Binary Cross-Entropy loss function for a center word ($c$), a true context word ($o$), and ($k$) negative samples:
 
-J(theta) = -log sigmoid(u_o^T * v_c) - sum_{j=1}^{k} log sigmoid(-u_j^T * v_c)
+$$
+J(\theta) = -\log \sigma(u_o^T v_c) - \sum_{j=1}^{k} \log \sigma(-u_j^T v_c)
+$$
 
-Where v_c represents the center word embedding and u_o represents the context word embedding.
+Where $v_c$ represents the center word embedding and $u_o$ represents the context word embedding.
 
 ## 🛠 Setup & Installation
 
